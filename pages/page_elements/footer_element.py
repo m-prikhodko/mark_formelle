@@ -11,4 +11,4 @@ class Footer(BasePage):
 
     def assert_for_byers_is_present(self):
         with allure.step("Проверка наличия блока 'Покупателям' в футере"):
-            self.is_element_present(self.footer_locators.FOR_BUYERS_BLOCK)
+            self.is_element_visible(self.footer_locators.FOR_BUYERS_BLOCK)
