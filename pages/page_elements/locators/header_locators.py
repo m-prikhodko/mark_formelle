@@ -21,3 +21,8 @@ class HeaderLocators:
     USER_IS_LOGED_IN = "[class='app-header__navbar-link app-desktop-visible js-profile-open']"
     FOR_MEN_CATALOG_TAB = "#fake-menu-2"
     OPEN_ALL_FOR_MEN = "li.daughter.depth_2 > a[href='/catalog/muzhchinam/']"
+    FOR_GIRLS_CATALOG_TAB = "#fake-menu-3"
+    OPEN_ALL_FOR_GIRLS = "li.daughter.depth_2 > a[href='/catalog/devochkam/']"
+    FOR_BOYS_CATALOG_TAB = "#fake-menu-4"
+    OPEN_ALL_FOR_BOYS = "li.daughter.depth_2 > a[href='/catalog/malchikam/']"
+    LOCATION_POPUP_BARANOVICHI = "[href='/?CITY_ID=3199']"

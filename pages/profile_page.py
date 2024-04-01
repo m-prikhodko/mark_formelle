@@ -20,5 +20,6 @@ class ProfilePage(BasePage):
             self.is_element_visible(self.profile_locators.CANCEL_ORDER_BLOCK)
             self.click(self.profile_locators.CONFIRM_CANCEL_ORDER)
             time.sleep(20)   # нужно, чтобы страница успевала прогрузиться (часто падает по таймауту)
-            self.check_url('https://markformelle.by/personal/order/')
-            # self.is_element_visible(self.profile_locators.ORDER_IN_PROCESS_IS_NOT_ACTIVE)
+            self.check_url('https://markformelle.by/personal/order/', timeout=180000)
+            self.assert_element_hidden(self.profile_locators.CANCEL_ORDER_BTN)
+
