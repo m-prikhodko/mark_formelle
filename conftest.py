@@ -4,13 +4,16 @@ from playwright.sync_api import sync_playwright
 
 
 @pytest.fixture(params=["firefox"])
+# В params указываем браузер / браузеры для запуска тестов. Все возможные варианты:
 # params=["chromium", "firefox", "webkit"]
 def page(request):
     playwright = sync_playwright().start()
+    # Указываем режим запуска тестов: headless / headed
     browser = getattr(playwright, request.param).launch(headless=False)
     context = browser.new_context()
     context.tracing.start(screenshots=True, snapshots=True, sources=True)
     page = context.new_page()
+    # Указываем ширину и высоту экрана для браузера
     page.set_viewport_size({"width": 1440, "height": 900})
     yield page
     test_name = request.node.name

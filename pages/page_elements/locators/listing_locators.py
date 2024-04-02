@@ -7,5 +7,3 @@ class ListingLocators:
     ADDED_TO_CART_MSG = ".add-in-basket-message"
     AD_POPUP = ".popmechanic-link"
     CLOSING_AD_POPUP = ".popmechanic-close"
-
-
