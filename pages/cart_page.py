@@ -21,21 +21,20 @@ class CartPage(BasePage):
             self.wait_for_selector(self.cart_locators.DELIVERIES_ITEMS_BLOCK)
 
     def choose_courier_minsk_delivery(self):
-        with allure.step(f"Выбор способа доставки - курьер по Минску"):
+        with allure.step("Выбор способа доставки - курьер по Минску"):
             self.click(self.cart_locators.RADIO_BTN_COURIER_MINSK)
 
-    def fill_street_field_minsk(self, text):
-        with allure.step(f"Заполнение поля 'Улица' значением '{text}' для доставки курьером по Минску"):
-            self.input_text(self.cart_locators.MINSK_STREET_INPUT,
-                            'Васнецова')  # иногда падает здесь, потому что не появляется список улиц
-            self.click(self.cart_locators.MINSK_STREET_LABEL)
-            self.click(self.cart_locators.MINSK_STREET_INPUT)
-            self.click(self.cart_locators.MINSK_STREET_MAP)
+    def fill_street_field_cart(self, text):
+        with allure.step(f"Заполнение поля 'Улица' значением '{text}' в корзине"):
+            self.input_text(self.cart_locators.CART_STREET_INPUT, text)  # иногда падает здесь, потому что не появляется список улиц
+            self.click(self.cart_locators.STREET_LABEL_CART)
+            self.click(self.cart_locators.CART_STREET_INPUT)
+            self.click(self.cart_locators.STREET_MAP_CART)
 
-    def fill_house_field_minsk(self, text):
-        with allure.step(f"Заполнение поля 'Дом' значением '{text}' для доставки курьером по Минску"):
-            self.click(self.cart_locators.MINSK_HOUSE_INPUT)
-            self.input_text(self.cart_locators.MINSK_HOUSE_INPUT, text)
+    def fill_house_field_cart(self, text):
+        with allure.step(f"Заполнение поля 'Дом' значением '{text}' в корзине"):
+            self.click(self.cart_locators.HOUSE_INPUT_CART)
+            self.input_text(self.cart_locators.HOUSE_INPUT_CART, text)
 
     def select_date_of_delivery(self):
         with allure.step("Выбор даты = послезавтра в поле 'Дата доставки'"):
@@ -48,7 +47,7 @@ class CartPage(BasePage):
             self.assert_element_has_value(self.cart_locators.MINSK_DATE_FIELD, f'{str_date}')
 
     def fill_comment_field(self, comment):
-        with allure.step(f"Заполнение поля 'Комментарий' текстом '{comment}'"):
+        with allure.step(f"Заполнение поля 'Комментарий' текстом '{comment}' в корзине"):
             self.input_text(self.cart_locators.COMMENT_FIELD, comment)
             self.assert_element_has_value(self.cart_locators.CHECK_COMMENT, comment)
 
@@ -83,9 +82,27 @@ class CartPage(BasePage):
             self.check_url('https://markformelle.by/personal/order/')
 
     def choose_pickup_delivery(self):
-        with allure.step(f"Выбор способа доставки - самовывоз из магазина"):
+        with allure.step("Выбор способа доставки - самовывоз из магазина"):
             self.click(self.cart_locators.RADIO_BTN_PICKUP_CART)
 
     def assert_store_is_chosen(self):
         with allure.step("Проверка, выбран ли магазин для самовывоза"):
             self.assert_element_hidden(self.cart_locators.NOT_VALID_FIELD_INPUT)
+
+    def choose_delivery_by_post(self):
+        with allure.step("Выбор способа доставки - почтой"):
+            self.click(self.cart_locators.RADIO_BTN_BY_POST)
+
+    def fill_postcode_field_cart(self, postcode):
+        with allure.step(f"Заполнение поля 'Индекс' значением '{postcode}' в корзине"):
+            self.click(self.cart_locators.POSTCODE_INPUT_CART)
+            self.input_text(self.cart_locators.POSTCODE_INPUT_CART, postcode)
+
+    def choose_pay_by_card_in_cart(self):
+        with allure.step("Выбор способа оплаты - картой онлайн в корзине"):
+            self.click(self.cart_locators.PAY_BY_CARD_IN_CART)
+
+    def assert_assist_page_is_opened(self):
+        with allure.step("Выбор способа оплаты - картой онлайн в корзине"):
+            self.wait_for_selector(self.cart_locators.ASSIST_PAGE_LOGO)
+            self.go_back()

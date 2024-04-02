@@ -21,9 +21,9 @@ class BasePage:
         with allure.step(f"Переход на URL: {url}"):
             self.page.goto(url)
 
-    def check_url(self, expected_url):
+    def check_url(self, expected_url, timeout=30000):
         with allure.step(f"Проверка URL: ожидаемый URL - {expected_url}"):
-            expect(self.page).to_have_url(expected_url)
+            expect(self.page).to_have_url(expected_url, timeout=timeout)
 
     def wait_for_url_change(self, expected_url):
         with allure.step(f"Ожидание изменения URL на {expected_url}"):
@@ -82,9 +82,9 @@ class BasePage:
         with allure.step(f"Ожидание исчезновения элемента: {selector}"):
             self.page.wait_for_selector(selector, state='detached')
 
-    def assert_text_present_on_page(self, text):
+    def is_text_present_on_page(self, text):
         with allure.step(f"Проверка наличия текста '{text}' на странице"):
-            expect(self.page).to_have_text(text)
+            self.wait_for_selector(f"//*[text()='{text}']")
 
     def assert_text_present_in_element(self, selector, text):
         with allure.step(f"Проверка наличия текста '{text}' в элементе {selector}"):
@@ -101,3 +101,7 @@ class BasePage:
     def assert_element_has_value(self, selector, value):
         with allure.step(f"Проверка на содержание значения '{value}' в элементе '{selector}'"):
             expect(self.page.locator(selector)).to_have_value(value)
+
+    def go_back(self):
+        with allure.step("Возврат на предыдущую страницу в браузере"):
+            self.page.go_back()

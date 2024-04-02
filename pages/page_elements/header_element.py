@@ -99,3 +99,19 @@ class Header(BasePage):
         with allure.step("Переход в листинг 'Смотреть все' для мужчин"):
             self.click(self.header_locators.FOR_MEN_CATALOG_TAB)
             self.click(self.header_locators.OPEN_ALL_FOR_MEN)
+
+    def go_to_all_for_girls(self):
+        with allure.step("Переход в листинг 'Смотреть все' для девочек"):
+            self.click(self.header_locators.FOR_GIRLS_CATALOG_TAB)
+            self.click(self.header_locators.OPEN_ALL_FOR_GIRLS)
+
+    def go_to_all_for_boys(self):
+        with allure.step("Переход в листинг 'Смотреть все' для мальчиков"):
+            self.click(self.header_locators.FOR_BOYS_CATALOG_TAB)
+            self.click(self.header_locators.OPEN_ALL_FOR_BOYS)
+
+    def change_user_location(self):
+        with allure.step("Смена локации пользователя из шапки сайта на Барановичи"):
+            self.click(self.header_locators.LOCATION_HEADER)
+            self.click(self.header_locators.LOCATION_POPUP_BARANOVICHI)
+            self.is_text_present_on_page('Барановичи')
