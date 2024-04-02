@@ -3,7 +3,7 @@ import pytest
 from playwright.sync_api import sync_playwright
 
 
-@pytest.fixture(params=["firefox"])
+@pytest.fixture(params=["chromium"])
 # В params указываем браузер / браузеры для запуска тестов. Все возможные варианты:
 # params=["chromium", "firefox", "webkit"]
 def page(request):
