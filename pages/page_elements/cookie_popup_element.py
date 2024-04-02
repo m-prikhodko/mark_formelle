@@ -9,6 +9,8 @@ class CookiePopup(BasePage):
         super().__init__(page)
         self.cookie_locators = CookieLocators()
 
-    def assert_cookie_popup_is_present(self):
-        with allure.step("Проверка наличия поп-апа куки на странице"):
-            self.is_element_present(self.cookie_locators.COOKIE_POPUP_BY)
+    def reject_cookie_by(self):
+        with allure.step("Отклонение куки BY"):
+            self.is_element_visible(self.cookie_locators.COOKIE_POPUP_BY)
+            self.click(self.cookie_locators.COOKIE_REJECT_BTN_BY)
+            self.assert_element_hidden(self.cookie_locators.COOKIE_POPUP_HIDDEN_BY)
