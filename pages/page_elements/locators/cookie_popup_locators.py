@@ -6,4 +6,3 @@ class CookieLocators:
     COOKIE_ACCEPT_BTN_BY = "#js-submit-btn"
     COOKIE_REJECT_BTN_BY = "#js-reject-btn"
     COOKIE_POPUP_HIDDEN_BY = ".app-cookies__popup-initialized.hide"
-

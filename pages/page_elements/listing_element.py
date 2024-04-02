@@ -1,5 +1,3 @@
-import time
-
 import allure
 from pages.base_page import BasePage
 from pages.page_elements.locators.listing_locators import ListingLocators

@@ -22,4 +22,3 @@ class ProfilePage(BasePage):
             time.sleep(20)   # нужно, чтобы страница успевала прогрузиться (часто падает по таймауту)
             self.check_url('https://markformelle.by/personal/order/', timeout=180000)
             self.assert_element_hidden(self.profile_locators.CANCEL_ORDER_BTN)
-
