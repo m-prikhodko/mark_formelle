@@ -1,10 +1,9 @@
-from playwright.sync_api import Page
 from pages.page_elements.header_element import Header
 from pages.page_elements.listing_element import Listing
-from data.urls import BASE_URL_BY_BY
+from data.urls import BASE_URL_BY
 
 
-def test_search(page: Page):
+def test_search(page):
     header = Header(page)
     listing = Listing(page)
     header.navigate(BASE_URL_BY)
