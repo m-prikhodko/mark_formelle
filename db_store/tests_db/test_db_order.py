@@ -29,3 +29,29 @@ def test_order_present(db_cursor):
         assert True, "В таблице orders есть записи с указанными значениями для всех обязательных полей."
     else:
         assert False, "В таблице orders отсутствуют записи или не все обязательные поля заполнены."
+
+
+def test_order_deleted(db_cursor):
+    db_cursor.execute("""
+        INSERT INTO orders 
+        (order_date, client_id, item_type_id, items_in_order)
+        VALUES
+        ('2024-04-10', 2, 2, 5);
+        """)
+    db_cursor.execute("""
+    DELETE FROM orders
+    WHERE order_date = '2024-04-10'
+      AND client_id = 2
+      AND item_type_id = 2
+      AND items_in_order = 5;
+    """)
+    db_cursor.execute("""
+    SELECT *
+    FROM orders
+    WHERE order_date = '2024-04-10'
+      AND client_id = 2
+      AND item_type_id = 2
+      AND items_in_order = 5;
+    """)
+    result = db_cursor.fetchall()
+    assert not result, "Данных больше нет."
